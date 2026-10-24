@@ -152,6 +152,21 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
+const appointmentPrepPattern =
+  /\b(prepare|preparing|get ready|what to bring|appointment)\b/i;
+
+if (
+  appointmentPrepPattern.test(text) &&
+  /\b(breast|health|clinic|doctor|appointment)\b/i.test(text)
+) {
+  showReply(
+    activeBubble,
+    "Here are some ways to prepare for a breast health appointment:\n\n1. Write down the breast change you noticed and when you first noticed it.\n2. Note any changes over time and any other symptoms.\n3. Bring a list of medicines and relevant health history, if available.\n4. Ask what examination or tests may be needed, when you will receive results, and what the costs may be.\n5. If you are uninsured or worried about cost, ask about financial assistance and available programs.\n\nYou do not need to have every detail prepared before seeking care. Please arrange prompt professional evaluation for a new or concerning breast change. This information is general guidance, not a diagnosis."
+  );
+  finishRequest();
+  return;
+}
+
   status.textContent = "AI working";
   detail.textContent =
     "The AI is preparing a response. Please keep this page open.";
