@@ -134,7 +134,6 @@ form.addEventListener("submit", (event) => {
 
   activeBubble = addMessage("Preparing a supportive response…");
   activeRequestId++;
-
   const costHelpPattern =
     /\b(cost|afford|uninsured|underinsured|insurance|financial assistance|pay for|can't pay|cannot pay|no insurance|low cost|free mammogram|free screening)\b/i;
 
