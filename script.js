@@ -135,6 +135,18 @@ form.addEventListener("submit", (event) => {
   activeBubble = addMessage("Preparing a supportive response…");
   activeRequestId++;
 
+  const costHelpPattern =
+    /\b(cost|afford|uninsured|underinsured|insurance|financial assistance|pay for|can't pay|cannot pay|no insurance|low cost|free mammogram|free screening)\b/i;
+
+  if (costHelpPattern.test(text)) {
+    showReply(
+      activeBubble,
+      "You may have options for help with the cost of breast care. In Michigan, the Breast and Cervical Cancer Control Navigation Program (BC3NP) helps eligible women access breast screening and follow-up care. Call 844-446-8727 or visit https://www.michigan.gov/mdhhs/keep-mi-healthy/chronicdiseases/cancer/bc3np to ask about eligibility and enrollment. In Wayne, Oakland, and Macomb counties, you can also call the Tri-County program at 888-242-2702 or visit https://bcccp.org/. Eligibility and covered services vary. When you call, explain that you have noticed a breast change and are concerned about cost. Ask what evaluation is available and whether financial assistance applies. Please don't delay seeking professional evaluation for a new or concerning breast change."
+    );
+    finishRequest();
+    return;
+  }
+
   if (!worker) {
     showFallback(activeBubble);
     finishRequest();
